@@ -55,6 +55,13 @@ public final class Main extends JavaPlugin {
         return prefix != null ? prefix : "";
     }
 
+    public static String getSuffix(Player p) {
+        LuckPerms luckPerms = LuckPermsProvider.get();
+        CachedMetaData metaData = Objects.requireNonNull(luckPerms.getUserManager().getUser(p.getUniqueId())).getCachedData().getMetaData();
+        String suffix = metaData.getSuffix();
+        return suffix != null ? suffix : "";
+    }
+
     public static String getPlayerGroupDisplayName(Player player) {
         LuckPerms luckPerms = LuckPermsProvider.get();
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());

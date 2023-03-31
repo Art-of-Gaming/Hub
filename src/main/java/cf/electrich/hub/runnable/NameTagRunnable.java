@@ -8,6 +8,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class NameTagRunnable extends BukkitRunnable {
@@ -21,13 +22,18 @@ public class NameTagRunnable extends BukkitRunnable {
     public void run() {
         for (Player player : this.instance.getServer().getOnlinePlayers()) {
             List<String> show = new ArrayList<>();
-            show.add(Main.getPlayerGroupDisplayName(player));
-            show.add(player.getName());
+            if (Objects.equals(player.getName(), "zNotDev")) {
+                show.add(CC.translate("&8[" + Main.getPlayerGroupDisplayName(player) + "&8]"));
+                show.add(CC.translate("&e✰ &4zNotDev &e✰"));
+            } else {
+                show.add(CC.translate("&8[" + Main.getPlayerGroupDisplayName(player) + "&8]"));
+                show.add(Main.getSuffix(player) + player.getName());
+            }
 
             show = new ArrayList<>(show);
             List<String> finalShow = show;
             for (Player target : this.instance.getServer().getOnlinePlayers()) {
-                LunarClientAPI.getInstance().overrideNametag(player, CC.translate(finalShow), target);
+                LunarClientAPI.getInstance().overrideNametag(player, finalShow, target);
             }
         }
     }
