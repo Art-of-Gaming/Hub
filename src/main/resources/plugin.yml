@@ -1,0 +1,10 @@
+name: Hub
+version: '${project.version}'
+main: cf.electrich.hub.Main
+authors: [ Compromissed ]
+commands:
+  spawn:
+    description: Easily teleport to Spawn.
+  gamemode:
+    description: Change your or other player gamemode.
+    aliases: ['gm', 'gmode']

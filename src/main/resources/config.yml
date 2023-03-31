@@ -1,0 +1,78 @@
+PERMISSIONS:
+  #
+  # If you want to have your own permissions set up if you were using any old core. Here's your solution.
+  # Tree will be for default hub.
+  # This means that every permission behind is going to be hub.<permission>
+  # You can also add more point's if you want. For example:
+  # event.vipjoin on vipjoin permissions. So it will be like this:
+  # hub.event.vipjoin
+  #
+  TREE: 'hub.'
+  VIPJOIN: 'vipjoin'
+  GAMEMODE: 'gamemode'
+
+ANNOUNCEMENTS: # Still in development.
+  ENABLED: 'false'
+  TIME: '300' # 60 * Minutes --- Set the time in seconds.
+  MESSAGES:
+    FREERANK:
+      - ''
+      - '  &b&lFree Rank'
+      - '  &7Have you heard about or free rank? Yep. It''s real'
+      - '  &7Now... How do I obtain it? Well...'
+      - ''
+      - '  &f1. &7You will need to be focused on our &9&nDiscord&7.'
+      - '  &f2. &7We will announce when &f/freerank &7is enabled. Just wait!'
+      - '  &f3. &7Enjoy your juicy new perks!'
+      - ''
+    DISCORD:
+      - ''
+      - '  &9&lDiscord'
+      - '  &7Want to notice about SOTW''s and EOTW''s and more events?'
+      - '  &7If you are the one. Why aren''t you in our Discord Server?'
+      - ''
+      - '  &7Join right now!'
+      - '  &9&ndiscord.electrich.cf'
+      - ''
+    TELEGRAM:
+      - ''
+      - '  &b&lTelegram'
+      - '  &7Would you like to get phone notifications every time there is an event?'
+      - '  &7Well. I''ve got a solution for you! Join our Telegram!'
+      - ''
+      - '  &7Join right now!'
+      - '  &9&ntelegram.me/ElectricHCF'
+      - ''
+    TEAMSPEAK:
+      - ''
+      - '  &3&lTeamSpeak'
+      - '  &7Have you been cheated on or glitched on?'
+      - '  &7If you have proof of someone breaking the rules. Report it right away.'
+      - '  &7But... How do I do that?'
+      - ''
+      - '  &f1. &7Enter our teamspeak @ &nts.electrich.cf&7.'
+      - '  &f2. &7Now join &fGeneral Support Waiting Room&7.'
+      - '  &f3. &7Soon, a staff will support you at the moment.'
+      - '  &f4. &7Everything is now like nothing happened.'
+      - ''
+
+MESSAGES:
+  WORDS:
+    CREATIVE_MODE: 'CREATIVE'
+    SURVIVAL_MODE: 'SURVIVAL'
+  PHRASES:
+    NO_PERMISSIONS: '&cNo permissions.'
+    TOO_MUCH_ARGS: '&cToo much arguments were giving.'
+    UNEXIST_PLAYER: '&cUnknown player.'
+    UNEXIST_GAMEMODE: '&cUnknown gamemode.'
+    GAMEMODE_USAGE: '&cUsage: &7/gamemode <mode> [player]'
+    GAMEMODE_CHANGE_YOU: '&6Your gamemode has been updated to &f<gamemode>&6.'
+    GAMEMODE_CHANGE_OTHER: '<prefix><player>&f''s &6gamemode has been updated to &f<gamemode>&6.'
+
+VIP_JOIN:
+  ENABLED: 'true' # This can only be set to 'false' or 'true'.
+  MESSAGE: '&8[&6&lVIP&8] <prefix><player> &ehas joined the lobby.'
+
+CHAT:
+  ENABLED: 'true'
+  FORMAT: '<prefix><player>&7: &r<message>'
