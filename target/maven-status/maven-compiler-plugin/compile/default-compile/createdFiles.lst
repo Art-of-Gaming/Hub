@@ -4,4 +4,5 @@ cf\electrich\hub\commands\SpawnCommand.class
 cf\electrich\hub\listeners\PlayerListener.class
 cf\electrich\hub\commands\GamemodeCommand.class
 cf\electrich\hub\adapter\tablist\TabLayout.class
+cf\electrich\hub\runnable\NameTagRunnable.class
 cf\electrich\hub\utils\CC.class

@@ -4,6 +4,7 @@ import cf.electrich.hub.adapter.tablist.TabLayout;
 import cf.electrich.hub.commands.GamemodeCommand;
 import cf.electrich.hub.commands.SpawnCommand;
 import cf.electrich.hub.listeners.PlayerListener;
+import cf.electrich.hub.runnable.NameTagRunnable;
 import cf.electrich.hub.utils.CC;
 import dev.risas.dracma.DracmaAPI;
 import me.lucanius.edge.Edge;
@@ -25,10 +26,11 @@ import java.util.Objects;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
-    private static DracmaAPI dracma;
+    private NameTagRunnable nameTagRunnable;
+    //private static DracmaAPI dracma;
     public static Main getInstance() { return instance; };
     private Edge edge;
-    public void log(String s) {
+    public static void log(String s) {
         Bukkit.getConsoleSender().sendMessage(CC.translate(s));
     }
 
@@ -39,6 +41,10 @@ public final class Main extends JavaPlugin {
         }
         if (r.equals("listeners")) {
             new PlayerListener();
+        }
+        if (r.equals("runnable")) {
+            this.nameTagRunnable = new NameTagRunnable(this);
+            this.nameTagRunnable.runTaskTimerAsynchronously(this, 5L, 10L);
         }
     }
 
@@ -52,9 +58,13 @@ public final class Main extends JavaPlugin {
     public static String getPlayerGroupDisplayName(Player player) {
         LuckPerms luckPerms = LuckPermsProvider.get();
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());
-        assert user != null;
+        if (user == null) {
+            return "&7Default";
+        }
         Group group = luckPerms.getGroupManager().getGroup(user.getPrimaryGroup());
-        assert group != null;
+        if (group == null) {
+            return "&7Default";
+        }
         return group.getDisplayName();
     }
 
@@ -90,9 +100,9 @@ public final class Main extends JavaPlugin {
     }
 
 
-    public static int getCoins(Player player) {
+    /*public static int getCoins(Player player) {
         return dracma.getCurrency(player.getUniqueId(), "coins");
-    }
+    }*/
 
     public static String returnConfig(String s) {
         return getInstance().getConfig().getString(s);
@@ -103,9 +113,10 @@ public final class Main extends JavaPlugin {
         instance = this;
         this.edge = new Edge(this, new TabLayout());
         log("&aHub has been loaded.");
-        dracma = new DracmaAPI();
+        //dracma = new DracmaAPI();
         register("commands");
         register("listeners");
+        register("runnable");
     }
 
     @Override

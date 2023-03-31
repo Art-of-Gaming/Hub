@@ -6,20 +6,14 @@ import me.lucanius.edge.adapter.TabAdapter;
 import me.lucanius.edge.column.TabColumn;
 import me.lucanius.edge.entry.TabData;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class TabLayout implements TabAdapter {
-    private final Main plugin = Main.getInstance();
-    File tablistFile = new File(Main.getInstance().getDataFolder(), "tablist.yml");
-    YamlConfiguration tablistConfig = YamlConfiguration.loadConfiguration(tablistFile);
 
     @Override
     public List<String> getHeader(Player player) {
@@ -46,13 +40,9 @@ public class TabLayout implements TabAdapter {
 
         entries.add(new TabData(TabColumn.LEFT, 3, CC.translate("&6HCF")));
         entries.add(new TabData(TabColumn.LEFT, 4, Main.isServerOnline(Main.returnConfig("SERVERS.HCF.IP")) ? CC.translate("&aOnline") : CC.translate("&cOffline")));
-        try {
-            entries.add(new TabData(TabColumn.LEFT, 5, CC.translate("&7Players: &e" + Main.getOnlinePlayers(Main.returnConfig("SERVERS.HCF.IP")))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        entries.add(new TabData(TabColumn.LEFT, 6, CC.translate("&6Queue")));
-        entries.add(new TabData(TabColumn.LEFT, 7, CC.translate("&c&oWorking on...")));
+
+        entries.add(new TabData(TabColumn.LEFT, 7, CC.translate("&6Queue")));
+        entries.add(new TabData(TabColumn.LEFT, 8, CC.translate("&c&oWorking on...")));
         entries.add(new TabData(TabColumn.LEFT, 11, CC.translate("&6Discord:")));
         entries.add(new TabData(TabColumn.LEFT, 12, CC.translate("&7discord.electrich.cf")));
 
@@ -60,9 +50,9 @@ public class TabLayout implements TabAdapter {
 
         entries.add(new TabData(TabColumn.MIDDLE, 0, CC.translate("&6&lHub")));
         entries.add(new TabData(TabColumn.MIDDLE, 3, CC.translate("&6Rank")));
-        entries.add(new TabData(TabColumn.MIDDLE, 4, CC.translate(Main.getPlayerGroupDisplayName(player))));
+        entries.add(new TabData(TabColumn.MIDDLE, 4, CC.translate(String.valueOf(Main.getPlayerGroupDisplayName(player)))));
         entries.add(new TabData(TabColumn.MIDDLE, 7, CC.translate("&6Coins")));
-        entries.add(new TabData(TabColumn.MIDDLE, 8, CC.translate(String.valueOf(Main.getCoins(player)))));
+        //entries.add(new TabData(TabColumn.MIDDLE, 8, CC.translate(String.valueOf(Main.getCoins(player)))));
         entries.add(new TabData(TabColumn.MIDDLE, 11, CC.translate("&6Twitter:")));
         entries.add(new TabData(TabColumn.MIDDLE, 12, CC.translate("&7@electrichcf")));
         entries.add(new TabData(TabColumn.MIDDLE, 14, CC.translate("&6Store:")));
@@ -72,11 +62,6 @@ public class TabLayout implements TabAdapter {
 
         entries.add(new TabData(TabColumn.RIGHT, 3, CC.translate("&6KitMap:")));
         entries.add(new TabData(TabColumn.RIGHT, 4, Main.isServerOnline(Main.returnConfig("SERVERS.KITS.IP")) ? CC.translate("&aOnline") : CC.translate("&cOffline")));
-        try {
-            entries.add(new TabData(TabColumn.RIGHT, 5, CC.translate("&7Players: &e" + Main.getOnlinePlayers(Main.returnConfig("SERVERS.KITS.IP")))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         entries.add(new TabData(TabColumn.RIGHT, 7, CC.translate("&6Profile:")));
         entries.add(new TabData(TabColumn.RIGHT, 8, CC.translate("&c&oWorking on...")));
         entries.add(new TabData(TabColumn.RIGHT, 11, CC.translate("&6Teamspeak:")));
@@ -84,7 +69,7 @@ public class TabLayout implements TabAdapter {
 
         // Far right side
 
-        //entries.add(new TabData(TabColumn.FAR_RIGHT, 4, "Far Right"));
+        entries.add(new TabData(TabColumn.FAR_RIGHT, 4, " "));
 
         return entries;
     }
