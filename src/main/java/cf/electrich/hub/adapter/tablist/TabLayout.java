@@ -2,7 +2,7 @@ package cf.electrich.hub.adapter.tablist;
 
 import cf.electrich.hub.Main;
 import cf.electrich.hub.utils.CC;
-import me.risas.dracma.DracmaAPI;
+import dev.risas.dracma.DracmaAPI;
 import me.lucanius.edge.adapter.TabAdapter;
 import me.lucanius.edge.column.TabColumn;
 import me.lucanius.edge.entry.TabData;

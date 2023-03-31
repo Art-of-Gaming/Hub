@@ -82,7 +82,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>me.risas.dracma</groupId>
+            <groupId>dev.risas.dracma</groupId>
             <artifactId>DracmaAPI</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
