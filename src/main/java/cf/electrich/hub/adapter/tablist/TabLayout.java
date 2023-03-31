@@ -2,7 +2,6 @@ package cf.electrich.hub.adapter.tablist;
 
 import cf.electrich.hub.Main;
 import cf.electrich.hub.utils.CC;
-import dev.risas.dracma.DracmaAPI;
 import me.lucanius.edge.adapter.TabAdapter;
 import me.lucanius.edge.column.TabColumn;
 import me.lucanius.edge.entry.TabData;
@@ -52,7 +51,7 @@ public class TabLayout implements TabAdapter {
         entries.add(new TabData(TabColumn.MIDDLE, 3, CC.translate("&6Rank")));
         entries.add(new TabData(TabColumn.MIDDLE, 4, CC.translate(Main.getGroupDisplayName(player))));
         entries.add(new TabData(TabColumn.MIDDLE, 7, CC.translate("&6Coins")));
-        entries.add(new TabData(TabColumn.MIDDLE, 4, CC.translate(DracmaAPI.getCurrency(player))));
+        entries.add(new TabData(TabColumn.MIDDLE, 4, CC.translate(String.valueOf(Main.getCoins(player)))));
 
         // Right side
 

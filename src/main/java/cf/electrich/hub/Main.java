@@ -5,25 +5,22 @@ import cf.electrich.hub.commands.GamemodeCommand;
 import cf.electrich.hub.commands.SpawnCommand;
 import cf.electrich.hub.listeners.PlayerListener;
 import cf.electrich.hub.utils.CC;
-import jdk.jfr.consumer.RecordedObject;
+import dev.risas.dracma.DracmaAPI;
 import me.lucanius.edge.Edge;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
+import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
-import net.luckperms.api.node.Node;
-import net.luckperms.api.node.types.DisplayNameNode;
-import net.luckperms.api.query.QueryOptions;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.libs.org.ibex.nestedvm.util.Seekable;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import java.util.Objects;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
+    private static DracmaAPI dracma;
     public static Main getInstance() { return instance; };
     private Edge edge;
     public void log(String s) {
@@ -42,23 +39,23 @@ public final class Main extends JavaPlugin {
 
     public static String getPrefix(Player p) {
         LuckPerms luckPerms = LuckPermsProvider.get();
-        CachedMetaData metaData = luckPerms.getUserManager().getUser(p.getUniqueId()).getCachedData().getMetaData();
+        CachedMetaData metaData = Objects.requireNonNull(luckPerms.getUserManager().getUser(p.getUniqueId())).getCachedData().getMetaData();
         String prefix = metaData.getPrefix();
         return prefix != null ? prefix : "";
     }
 
-    public static String getGroupDisplayName(Player player) {
+    public String getPlayerGroupDisplayName(Player player) {
         LuckPerms luckPerms = LuckPermsProvider.get();
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());
-        if (user != null) {
-            String groupName = user.getPrimaryGroup();
-            Node node = luckPerms.getNodeBuilderRegistry().forContextualOptions(QueryOptions.nonContextual()).build().createNode("group." + groupName + ".displayname");
-            DisplayNameNode displayNameNode = node.get(DisplayNameNode.class);
-            if (displayNameNode != null) {
-                return displayNameNode.value();
-            }
-        }
-        return null;
+        assert user != null;
+        Group group = luckPerms.getGroupManager().getGroup(user.getPrimaryGroup());
+        assert group != null;
+        return group.getDisplayName();
+    }
+
+
+    public static int getCoins(Player player) {
+        return dracma.getCurrency(player.getUniqueId(), "coins");
     }
 
     public static String returnConfig(String s) {
@@ -70,6 +67,7 @@ public final class Main extends JavaPlugin {
         instance = this;
         this.edge = new Edge(this, new TabLayout());
         log("&aHub has been loaded.");
+        dracma = new DracmaAPI();
         register("commands");
         register("listeners");
     }
