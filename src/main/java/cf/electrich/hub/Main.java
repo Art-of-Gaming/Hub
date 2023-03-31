@@ -16,6 +16,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
@@ -44,13 +49,44 @@ public final class Main extends JavaPlugin {
         return prefix != null ? prefix : "";
     }
 
-    public String getPlayerGroupDisplayName(Player player) {
+    public static String getPlayerGroupDisplayName(Player player) {
         LuckPerms luckPerms = LuckPermsProvider.get();
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());
         assert user != null;
         Group group = luckPerms.getGroupManager().getGroup(user.getPrimaryGroup());
         assert group != null;
         return group.getDisplayName();
+    }
+
+    public static boolean isServerOnline(String ip) {
+        int port = Integer.parseInt(ip.split(":")[1]);
+        try {
+            InetAddress address = InetAddress.getByName(ip);
+            Socket socket = new Socket();
+            InetSocketAddress socketAddress = new InetSocketAddress(address, port);
+            socket.connect(socketAddress, 1000);
+            socket.close();
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    @SuppressWarnings("EmptyWhileStatementBody")
+    public static int getOnlinePlayers(String ip) throws IOException {
+        int port = Integer.parseInt(ip.split(":")[1]);
+        try (Socket socket = new Socket(ip, port)) {
+            InputStream inputStream = socket.getInputStream();
+            byte[] data = new byte[2048];
+            int length;
+            while ((length = inputStream.read(data)) != -1 && length < 2048) {
+            }
+            String response = new String(data, 0, length);
+            String[] parts = response.split("\0");
+            String playersOnline = parts[4];
+            playersOnline = playersOnline.substring(playersOnline.indexOf(":") + 1, playersOnline.indexOf(")"));
+            return Integer.parseInt(playersOnline);
+        }
     }
 
 

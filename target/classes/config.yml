@@ -1,3 +1,11 @@
+SERVERS:
+  HCF:
+    IP: '209.145.51.42:10000'
+  KITS:
+    IP: '209.145.51.42:9999'
+  CLANS:
+    IP: '209.145.51.42:9998'
+
 PERMISSIONS:
   #
   # If you want to have your own permissions set up if you were using any old core. Here's your solution.
