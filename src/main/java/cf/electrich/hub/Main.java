@@ -9,7 +9,6 @@ import cf.electrich.hub.runnable.NameTagRunnable;
 import cf.electrich.hub.utils.CC;
 import dev.risas.dracma.DracmaAPI;
 import io.github.thatkawaiisam.assemble.Assemble;
-import io.github.thatkawaiisam.assemble.AssembleStyle;
 import me.lucanius.edge.Edge;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -30,7 +29,7 @@ import java.util.Objects;
 public final class Main extends JavaPlugin {
     private static Main instance;
     private NameTagRunnable nameTagRunnable;
-    //private static DracmaAPI dracma;
+    private static DracmaAPI dracma;
     public static Main getInstance() { return instance; };
     private Edge edge;
     public static void log(String s) {
@@ -110,9 +109,9 @@ public final class Main extends JavaPlugin {
     }
 
 
-    /*public static int getCoins(Player player) {
+    public static int getCoins(Player player) {
         return dracma.getCurrency(player.getUniqueId(), "coins");
-    }*/
+    }
 
     public static String returnConfig(String s) {
         return getInstance().getConfig().getString(s);
@@ -124,7 +123,7 @@ public final class Main extends JavaPlugin {
         this.edge = new Edge(this, new TabLayout());
         new Assemble(this, new ScoreboardLayout());
         log("&aHub has been loaded.");
-        //dracma = new DracmaAPI();
+        dracma = new DracmaAPI();
         register("commands");
         register("listeners");
         register("runnable");

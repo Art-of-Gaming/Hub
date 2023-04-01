@@ -52,7 +52,7 @@ public class TabLayout implements TabAdapter {
         entries.add(new TabData(TabColumn.MIDDLE, 3, CC.translate("&6Rank")));
         entries.add(new TabData(TabColumn.MIDDLE, 4, CC.translate(String.valueOf(Main.getPlayerGroupDisplayName(player)))));
         entries.add(new TabData(TabColumn.MIDDLE, 7, CC.translate("&6Coins")));
-        //entries.add(new TabData(TabColumn.MIDDLE, 8, CC.translate(String.valueOf(Main.getCoins(player)))));
+        entries.add(new TabData(TabColumn.MIDDLE, 8, CC.translate(String.valueOf(Main.getCoins(player)))));
         entries.add(new TabData(TabColumn.MIDDLE, 11, CC.translate("&6Twitter:")));
         entries.add(new TabData(TabColumn.MIDDLE, 12, CC.translate("&7@electrichcf")));
         entries.add(new TabData(TabColumn.MIDDLE, 14, CC.translate("&6Store:")));

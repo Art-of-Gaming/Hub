@@ -2,6 +2,8 @@ name: Hub
 version: '${project.version}'
 main: cf.electrich.hub.Main
 authors: [ Compromissed ]
+loadbefore:
+  - Dracma
 commands:
   spawn:
     description: Easily teleport to Spawn.
