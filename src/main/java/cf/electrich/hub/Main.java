@@ -119,6 +119,8 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         this.edge = new Edge(this, new TabLayout());
+        Assemble assemble = new Assemble(this, new ExampleAssembleAdapter());
+
         log("&aHub has been loaded.");
         //dracma = new DracmaAPI();
         register("commands");
