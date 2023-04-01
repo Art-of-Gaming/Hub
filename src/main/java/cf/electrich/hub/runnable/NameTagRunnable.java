@@ -23,7 +23,7 @@ public class NameTagRunnable extends BukkitRunnable {
         for (Player player : this.instance.getServer().getOnlinePlayers()) {
             List<String> show = new ArrayList<>();
             show.add(CC.translate("&8[" + Main.getPlayerGroupDisplayName(player) + "&8]"));
-            show.add(Main.getSuffix(player) + player.getName());
+            show.add(CC.translate(Main.getSuffix(player) + player.getName()));
 
             show = new ArrayList<>(show);
             List<String> finalShow = show;

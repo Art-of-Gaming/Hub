@@ -13,7 +13,7 @@ import java.util.List;
 public class ScoreboardLayout implements AssembleAdapter {
     @Override
     public String getTitle(Player player) {
-        return CC.translate("&6&lElectricHCF");
+        return CC.translate("&6&lHUB-01");
     }
 
     @Override
@@ -27,9 +27,10 @@ public class ScoreboardLayout implements AssembleAdapter {
         toReturn.add("&6Rank:");
         toReturn.add(Main.getPlayerGroupDisplayName(player));
         toReturn.add("&r");
+        toReturn.add("&7&oelectrich.cf");
 
-        toReturn.add(0,CC.translate("&8&m" + StringUtils.repeat("-", 32)));
-        toReturn.add(toReturn.size(), CC.translate("&8&m" + StringUtils.repeat("-", 32)));
+        toReturn.add(0,CC.translate("&7&m" + StringUtils.repeat("-", 20)));
+        toReturn.add(toReturn.size(), CC.translate("&7&m" + StringUtils.repeat("-", 20)));
         return toReturn;
     }
 }

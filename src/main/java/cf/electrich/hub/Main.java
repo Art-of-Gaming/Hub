@@ -122,9 +122,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         this.edge = new Edge(this, new TabLayout());
-        Assemble assemble = new Assemble(this, new ScoreboardLayout());
-        assemble.setTicks(2);
-        assemble.setAssembleStyle(AssembleStyle.VIPER);
+        new Assemble(this, new ScoreboardLayout());
         log("&aHub has been loaded.");
         //dracma = new DracmaAPI();
         register("commands");
@@ -135,6 +133,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         this.edge.getService().destroy();
+        Bukkit.getScheduler().cancelTasks(this);
         log("&cHub has been disabled.");
     }
 

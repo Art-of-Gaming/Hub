@@ -6,3 +6,4 @@ cf\electrich\hub\commands\GamemodeCommand.class
 cf\electrich\hub\adapter\tablist\TabLayout.class
 cf\electrich\hub\runnable\NameTagRunnable.class
 cf\electrich\hub\utils\CC.class
+cf\electrich\hub\adapter\scoreboard\ScoreboardLayout.class
