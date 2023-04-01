@@ -1,5 +1,6 @@
 package cf.electrich.hub;
 
+import cf.electrich.hub.adapter.scoreboard.ScoreboardLayout;
 import cf.electrich.hub.adapter.tablist.TabLayout;
 import cf.electrich.hub.commands.GamemodeCommand;
 import cf.electrich.hub.commands.SpawnCommand;
@@ -7,6 +8,8 @@ import cf.electrich.hub.listeners.PlayerListener;
 import cf.electrich.hub.runnable.NameTagRunnable;
 import cf.electrich.hub.utils.CC;
 import dev.risas.dracma.DracmaAPI;
+import io.github.thatkawaiisam.assemble.Assemble;
+import io.github.thatkawaiisam.assemble.AssembleStyle;
 import me.lucanius.edge.Edge;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -119,8 +122,9 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         this.edge = new Edge(this, new TabLayout());
-        Assemble assemble = new Assemble(this, new ExampleAssembleAdapter());
-
+        Assemble assemble = new Assemble(this, new ScoreboardLayout());
+        assemble.setTicks(2);
+        assemble.setAssembleStyle(AssembleStyle.VIPER);
         log("&aHub has been loaded.");
         //dracma = new DracmaAPI();
         register("commands");

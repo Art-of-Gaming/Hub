@@ -59,15 +59,18 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>io.github.thatkawaiisam</groupId>
-            <artifactId>assemble</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/Assemble.jar</systemPath>
+            <groupId>com.github.thatkawaiisam</groupId>
+            <artifactId>Assemble</artifactId>
+            <version>0873308ada</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
