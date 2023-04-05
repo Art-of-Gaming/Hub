@@ -2,9 +2,10 @@ name: Hub
 version: '1.0-SNAPSHOT'
 main: cf.electrich.hub.Main
 authors: [ Compromissed ]
+depend:
+  - Dracma
+softdepend:
+  - Dracma
 commands:
   spawn:
-    description: Easily teleport to Spawn.
   gamemode:
-    description: Change your or other player gamemode.
-    aliases: ['gm', 'gmode']
